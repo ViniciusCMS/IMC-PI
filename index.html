@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <title>Calculadora de IMC</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-  <h1>Calculadora de IMC</h1>
-  <div id="input-container">
-    <label for="weight">Peso (kg):</label>
-    <input type="number" id="weight" step="0.01" required>
-    <label for="height">Altura (cm):</label>
-    <input type="number" id="height" step="0.01" required>
-    <button onclick="calculateIMC()">Calcular</button>
-  </div>
-  <div id="result-container"></div>
+    <div class="container">
+        <h1>Calculadora IMC</h1>
+        <h2>Indice de Massa Corporal</h2>
+        <div class="input-container">
+            <label for="altura">Altura (m):</label>
+            <input type="number" step="0.01" id="altura" placeholder="Altura">
+        </div>
+        <div class="input-container">
+            <label for="peso">Peso (kg):</label>
+            <input type="number" step="0.01" id="peso" placeholder="Peso">
+        </div>
+        <button onclick="calcularIMC()">Calcular</button>
+        <div id="resultado"></div>
+        <div class="progress-container">
+            <div id="progresso"></div>
+        </div>
+    </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

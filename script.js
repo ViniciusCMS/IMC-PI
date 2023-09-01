@@ -1,28 +1,34 @@
-function calculateIMC() {
-    var weightInput = document.getElementById("weight");
-    var heightInput = document.getElementById("height");
-    var resultContainer = document.getElementById("result-container");
-  
-    var weight = parseFloat(weightInput.value);
-    var height = parseFloat(heightInput.value) / 100; // Converter para metros
-  
-    if (isNaN(weight) || isNaN(height) || height <= 0) {
-      resultContainer.innerText = "Por favor, insira valores válidos para peso e altura.";
+function calcularIMC() {
+  const altura = parseFloat(document.getElementById('altura').value);
+  const peso = parseFloat(document.getElementById('peso').value);
+
+  if (isNaN(altura) || isNaN(peso) || altura <= 0 || peso <= 0) {
+      document.getElementById('resultado').innerHTML = 'Por favor, insira valores válidos.';
+      document.getElementById('progresso').style.width = '0%';
       return;
-    }
-  
-    var bmi = weight / (height * height);
-  
-    var resultMessage = "Seu IMC é " + bmi.toFixed(2) + ". ";
-    if (bmi < 18.5) {
-      resultMessage += "Você está abaixo do peso.";
-    } else if (bmi < 25) {
-      resultMessage += "Você está saudável.";
-    } else if (bmi < 30) {
-      resultMessage += "Você está com sobrepeso.";
-    } else {
-      resultMessage += "Você está obeso.";
-    }
-  
-    resultContainer.innerText = resultMessage;
   }
+
+  const imc = peso / (altura * altura);
+  const nivelIMC = obterNivelIMC(imc);
+
+  document.getElementById('resultado').innerHTML = `Seu IMC é ${imc.toFixed(2)} (${nivelIMC})`;
+
+  const progresso = (imc - 15) * 5; // Escala aproximada
+  document.getElementById('progresso').style.width = progresso + '%';
+}
+
+function obterNivelIMC(imc) {
+  if (imc < 18.5) {
+      return 'Abaixo do Peso';
+  } else if (imc < 24.9) {
+      return 'Peso Normal';
+  } else if (imc < 29.9) {
+      return 'Sobrepeso';
+  } else if (imc < 34.9) {
+      return 'Obesidade Grau I';
+  } else if (imc < 39.9) {
+      return 'Obesidade Grau II';
+  } else {
+      return 'Obesidade Grau III';
+  }
+}
